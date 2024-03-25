@@ -34,14 +34,13 @@ class FileDatasource:
         except StopIteration:
             sys.exit()
 
-        data = AggregatedData(
+        return AggregatedData(
             Accelerometer(int(accelerometer_data_row[0]), int(accelerometer_data_row[1]), int(accelerometer_data_row[2])),
             Gps(float(gps_data_row[0]), float(gps_data_row[1])),
             Parking(int(parking_data_row[0]), Gps(float(parking_data_row[1]), float(parking_data_row[2]))),
             datetime.now(),
             config.USER_ID
         )
-        return data
 
 
     def startReading(self):
