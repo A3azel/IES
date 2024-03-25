@@ -50,8 +50,8 @@ class FileDatasource:
             self.accelerometer_data = reader(accelerometer_file)
             next(self.accelerometer_data)
 
-            gcp_file = open(self.gps_filename)
-            self.gps_data = reader(gcp_file)
+            gps_file = open(self.gps_filename)
+            self.gps_data = reader(gps_file)
             next(self.gps_data)
 
             parking_file = open(self.parking_filename)
