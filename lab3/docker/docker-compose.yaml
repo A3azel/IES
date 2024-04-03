@@ -45,7 +45,7 @@ services:
 
   store:
     container_name: store
-    build: ../../lab_2
+    build: ../../lab_3
     depends_on:
       - postgres_db
     restart: always
