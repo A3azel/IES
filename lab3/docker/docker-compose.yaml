@@ -1,5 +1,4 @@
 version: "3.9"
-name: "road_vision__hub"
 services:
   mqtt:
     image: eclipse-mosquitto
@@ -12,54 +11,8 @@ services:
       - 1883:1883
       - 9001:9001
     networks:
-      mynetwork:
-#  postgres_db:
-#    image: postgres:latest
-#    container_name: postgres_db
-#    restart: always
-#    environment:
-#      POSTGRES_USER: user
-#      POSTGRES_PASSWORD: pass
-#      POSTGRES_DB: test_db
-#    volumes:
-#      - postgres_data:/var/lib/postgresql/data
-#      - ./db/structure.sql:/docker-entrypoint-initdb.d/structure.sql
-#    ports:
-#      - "5432:5432"
-#    networks:
-#      db_network:
-#
-#  pgadmin:
-#    container_name: pgadmin4
-#    image: dpage/pgadmin4
-#    restart: always
-#    environment:
-#      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-#      PGADMIN_DEFAULT_PASSWORD: root
-#    volumes:
-#       - pgadmin-data:/var/lib/pgadmin
-#    ports:
-#      - "5050:80"
-#    networks:
-#      db_network:
-#
-#  store:
-#    container_name: store
-#    build: ../../lab_2
-#    depends_on:
-#      - postgres_db
-#    restart: always
-#    environment:
-#      POSTGRES_USER: user
-#      POSTGRES_PASSWORD: pass
-#      POSTGRES_DB: test_db
-#      POSTGRES_HOST: postgres_db
-#      POSTGRES_PORT: 5432
-#    ports:
-#       - "8000:8000"
-#    networks:
-#      db_network:
-#      hub_store:
+      - mynetwork
+
   postgres_db:
     image: postgres:latest
     container_name: postgres_db
@@ -74,7 +27,7 @@ services:
     ports:
      - "5432:5432"
     networks:
-      mynetwork:
+      - mynetwork
 
   pgadmin:
     container_name: pgadmin4
@@ -88,7 +41,7 @@ services:
     ports:
      - "5050:80"
     networks:
-      mynetwork:
+      - mynetwork
 
   store:
     container_name: store
@@ -105,14 +58,16 @@ services:
     ports:
       - "8000:8000"
     networks:
-      mynetwork:
+      - mynetwork
+
   redis:
     image: redis:latest
     container_name: redis
     ports:
       - "6379:6379"
     networks:
-      mynetwork:
+      - mynetwork
+
   hub:
     container_name: hub
     build: ../
@@ -132,9 +87,11 @@ services:
     ports:
       - "9000:8000"
     networks:
-      mynetwork:
+      - mynetwork
+
 networks:
   mynetwork:
+
 volumes:
   postgres_data:
   pgadmin-data:
